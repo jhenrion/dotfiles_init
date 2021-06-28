@@ -1,4 +1,4 @@
-COMPUTER_NAME="Blade"
+COMPUTER_NAME="Move"
 
 osascript -e 'tell application "System Preferences" to quit'
 
@@ -19,28 +19,28 @@ sudo scutil --set LocalHostName "$COMPUTER_NAME"
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
 # Set language and text formats
-defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
-defaults write NSGlobalDomain AppleLocale -string "en_US@currency=EUR"
-defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
-defaults write NSGlobalDomain AppleMetricUnits -bool true
+defaults write NSGlobalDomain AppleLanguages -array "fr-FR"
+defaults write NSGlobalDomain AppleLocale -string "fr_FR@currency=EUR"
+#defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+#defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 # Set the timezone (see `sudo systemsetup -listtimezones` for other values)
-sudo systemsetup -settimezone "Europe/Amsterdam" > /dev/null
+sudo systemsetup -settimezone "Europe/Paris" > /dev/null
 
 # Set standby delay to 24 hours (default is 1 hour)
-sudo pmset -a standbydelay 86400
+#sudo pmset -a standbydelay 86400
 
 # Disable Sudden Motion Sensor
-sudo pmset -a sms 0
+#sudo pmset -a sms 0
 
 # Disable audio feedback when volume is changed
-defaults write com.apple.sound.beep.feedback -bool false
+#defaults write com.apple.sound.beep.feedback -bool false
 
 # Disable the sound effects on boot
-sudo nvram SystemAudioVolume=" "
+#sudo nvram SystemAudioVolume=" "
 
 # Menu bar: show battery percentage
-defaults write com.apple.menuextra.battery ShowPercent YES
+#defaults write com.apple.menuextra.battery ShowPercent YES
 
 # Disable opening and closing window animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
