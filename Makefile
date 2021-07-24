@@ -37,7 +37,7 @@ ifndef GITHUB_ACTION
 endif
 
 #packages: brew-packages cask-apps node-packages
-packages: brew-packages cask-apps
+packages: brew-packages
 
 #link: stow-$(OS)
 #	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
@@ -84,6 +84,9 @@ git: brew
 
 brew-packages: brew
 	brew bundle --file=$(DOTFILES_DIR)/install/Brewfile
+
+cron:
+	crontab crontab/cron.txt
 
 #cask-apps: brew
 #	brew bundle --file=$(DOTFILES_DIR)/install/Caskfile || true
