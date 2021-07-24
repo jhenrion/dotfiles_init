@@ -12,7 +12,7 @@ export STOW_DIR = $(DOTFILES_DIR)
 
 all: $(OS)
 
-macos: sudo core-macos packages link
+macos: sudo core-macos packages link cron
 
 #linux: core-linux link
 
@@ -37,7 +37,7 @@ ifndef GITHUB_ACTION
 endif
 
 #packages: brew-packages cask-apps node-packages
-packages: brew-packages
+packages: brew-packages cask-apps
 
 link: stow-$(OS)
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
@@ -88,8 +88,8 @@ brew-packages: brew
 cron:
 	crontab crontab/cron.txt
 
-#cask-apps: brew
-#	brew bundle --file=$(DOTFILES_DIR)/install/Caskfile || true
+cask-apps: brew
+	brew bundle --file=$(DOTFILES_DIR)/install/Caskfile || true
 #	defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
 #	for EXT in $$(cat install/Codefile); do code --install-extension $$EXT; done
 #	xattr -d -r com.apple.quarantine ~/Library/QuickLook
