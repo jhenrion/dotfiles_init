@@ -29,4 +29,4 @@ brew "nano"
 #brew "thefuck"
 #brew "tree"
 brew "wget"
-brew blackhole-2ch
+brew "blackhole-2ch"
