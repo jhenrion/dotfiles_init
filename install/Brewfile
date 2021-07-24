@@ -4,7 +4,7 @@
 #
 #brew "bat"
 #brew "bats-core"
-#brew "coreutils"
+brew "coreutils"
 #brew "diff-so-fancy"
 #brew "dockutil"
 #brew "fasd"
