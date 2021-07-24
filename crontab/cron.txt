@@ -1,0 +1,3 @@
+
+# Omnifocus cron
+0 0 * * * /Users/ju/.dotfiles/applescript/omnifocus_planning.scpt
