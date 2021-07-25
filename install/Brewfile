@@ -6,7 +6,7 @@
 #brew "bats-core"
 brew "coreutils"
 #brew "diff-so-fancy"
-#brew "dockutil"
+brew "dockutil"
 #brew "fasd"
 #brew "ffmpeg"
 #brew "gnu-sed"

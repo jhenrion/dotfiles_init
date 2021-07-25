@@ -6,18 +6,19 @@ PATH := $(DOTFILES_DIR)/bin:$(PATH)
 #NVM_DIR := $(HOME)/.nvm
 export XDG_CONFIG_HOME = $(HOME)/.config
 export STOW_DIR = $(DOTFILES_DIR)
+export ZSH = $(HOME)/.oh-my-zsh
 #export ACCEPT_EULA=Y
 
 .PHONY: test
 
 all: $(OS)
 
-macos: sudo core-macos packages link cron
+macos: sudo core-macos packages link cron 
 
 #linux: core-linux link
 
 #core-macos: brew bash git npm ruby
-core-macos: brew git
+core-macos: brew git zsh
 
 #core-linux:
 #	apt-get update
@@ -99,3 +100,17 @@ cask-apps: brew
 
 #test:
 #	. $(NVM_DIR)/nvm.sh; bats test
+
+zsh: git font
+	if [ -d ${ZSH} ]; then rm -rf ${ZSH}; fi
+	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH}/custom/themes/powerlevel10k
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH}/plugins/zsh-syntax-highlighting
+	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH}/plugins/zsh-autosuggestions
+
+
+font:
+	if [ -d fonts ]; then rm -rf fonts; fi
+	git clone https://github.com/powerline/fonts.git
+	cd fonts; ./install.sh; rm -rf fonts
+
