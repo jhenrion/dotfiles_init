@@ -101,6 +101,7 @@ cask-apps: brew
 #test:
 #	. $(NVM_DIR)/nvm.sh; bats test
 
+# source : https://medium.com/@ivanaugustobd/your-terminal-can-be-much-much-more-productive-5256424658e8
 zsh: git font
 	if [ -d ${ZSH} ]; then rm -rf ${ZSH}; fi
 	curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
