@@ -1,3 +1,3 @@
 
 # Omnifocus cron
-0 0 * * * /usr/bin/osascript /Users/ju/.dotfiles/applescript/omnifocus_planning.scpt
+@daily /usr/bin/osascript /Users/ju/.dotfiles/applescript/omnifocus_planning.applescript
