@@ -33,8 +33,8 @@ cask "transmission"
 cask "openoffice"
 cask "scroll-reverser"
 cask "megasync"
-cask "macpass"
 cask "obsidian"
+cask "keepassxc"
 
 #
 ## Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)

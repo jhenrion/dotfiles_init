@@ -11,6 +11,6 @@ dockutil --no-restart --add "/System/Applications/Calendar.app"
 dockutil --no-restart --add "/System/Applications/System Preferences.app"
 dockutil --no-restart --add "/Applications/Spotify.app"
 dockutil --no-restart --add "/Applications/iTerm.app"
-dockutil --no-restart --add "/Applications/MacPass.app"
+dockutil --no-restart --add "/Applications/KeePassXC.app"
 
 killall Dock
