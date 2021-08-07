@@ -26,11 +26,11 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #
 ## Set the timezone (see `sudo systemsetup -listtimezones` for other values)
 #sudo systemsetup -settimezone "Europe/Paris" > /dev/null
-#
-## Disable mouse acceleration
-## Default value : defaults write .GlobalPreferences com.apple.mouse.scaling 3
-#defaults write .GlobalPreferences com.apple.mouse.scaling -1
-#
+
+# Disable mouse acceleration
+# Default value : defaults write .GlobalPreferences com.apple.mouse.scaling 3
+# defaults write .GlobalPreferences com.apple.mouse.scaling -1
+
 ## Set standby delay to 24 hours (default is 1 hour)
 ##sudo pmset -a standbydelay 86400
 #

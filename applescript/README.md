@@ -1,5 +1,8 @@
 
 References
+
+A regarder : https://talk.automators.fm/t/omnifocus-automate-adding-tags-to-existing-tasks/2774/4
+
 The following scripts and guides were an enormous help and this guide wouldn't be possible without them:
 
 https://github.com/jsit/omnifocus-3-applescript-guide

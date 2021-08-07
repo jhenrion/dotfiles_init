@@ -35,6 +35,7 @@ cask "scroll-reverser"
 cask "megasync"
 cask "obsidian"
 cask "keepassxc"
+cask "gimp"
 
 #
 ## Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
