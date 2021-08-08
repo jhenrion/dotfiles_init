@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>2D767A46-B652-49BE-8A7B-6A7D0A5C2334</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DDDF389E-AA07-40D7-B8E2-2ADBAADF4853</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>DDDF389E-AA07-40D7-B8E2-2ADBAADF4853</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string>Julien</string>
+	<key>description</key>
+	<string>Open Google Meet</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Google Meet</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>m</string>
+				<key>subtext</key>
+				<string>Access to https://meet.google.com/gkj-betz-emm</string>
+				<key>text</key>
+				<string>Open Google Meet</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2D767A46-B652-49BE-8A7B-6A7D0A5C2334</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>https://meet.google.com/gkj-betz-emm</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>DDDF389E-AA07-40D7-B8E2-2ADBAADF4853</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>2D767A46-B652-49BE-8A7B-6A7D0A5C2334</key>
+		<dict>
+			<key>xpos</key>
+			<integer>45</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
+		<key>DDDF389E-AA07-40D7-B8E2-2ADBAADF4853</key>
+		<dict>
+			<key>xpos</key>
+			<integer>215</integer>
+			<key>ypos</key>
+			<integer>275</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
