@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>2D767A46-B652-49BE-8A7B-6A7D0A5C2334</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>BF10B845-468E-4A88-A9D9-8E4C589E387C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BF10B845-468E-4A88-A9D9-8E4C589E387C</key>
+		<array/>
+	</dict>
+	<key>createdby</key>
+	<string>Julien</string>
+	<key>description</key>
+	<string>Contact App LM</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Contact LM</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>c</string>
+				<key>subtext</key>
+				<string>Access to https://intralm2.fr.corp.leroymerlin.com/contact</string>
+				<key>text</key>
+				<string>Contact Leroy Merlin</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2D767A46-B652-49BE-8A7B-6A7D0A5C2334</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string>com.google.Chrome</string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://intralm2.fr.corp.leroymerlin.com/contact/search?query={query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>BF10B845-468E-4A88-A9D9-8E4C589E387C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>function run(argv) {
+
+  var appUrl = "https://connect.leroymerlin.fr/my.policy";
+  var browser = Application("Google Chrome");
+
+  var tab, w, t;
+
+  for (w = 0; w &lt; browser.windows.length; w++) {
+    for (t = 0; t &lt; browser.windows[w].tabs.length; t++) {
+      if (browser.windows[w].tabs[t].url().indexOf(appUrl) &gt;= 0) {
+        tab = browser.windows[w].tabs[t];
+      }
+    }
+  }
+
+  if (! tab) {
+    var me = Application.currentApplication();
+    me.includeStandardAdditions = true;
+    me.displayNotification("Please open the site in Chrome.", {withTitle: "https://connect.leroymerlin.fr not found"});
+    return;
+  }
+  else {
+    var me = Application.currentApplication();
+    me.includeStandardAdditions = true;
+    me.displayNotification("coucou");
+    tab.url = "javascript:SubmitResult(0); return 1;";
+  }
+
+  if (["p", "pp", "play", "pause"].indexOf(argv[0]) &gt;= 0) {
+    tab.url = "javascript:if(window.faw.isPlaying){window.faw.stop();}else{window.faw.play();}";
+  } else if (["n", "next", "skip"].indexOf(argv[0]) &gt;= 0) {
+    tab.url = "javascript:window.faw.skip();";
+  } else if (["genre"].indexOf(argv[0] &gt;= 0)) {
+    var channelId = argv[0].split(' ')[1];
+    tab.url = "javascript:window.faw.channel(" + channelId + ");";
+  }
+}</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>7</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>60C1F1EE-757D-44A0-A7A5-7FF318B7255D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>2D767A46-B652-49BE-8A7B-6A7D0A5C2334</key>
+		<dict>
+			<key>xpos</key>
+			<integer>45</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
+		<key>60C1F1EE-757D-44A0-A7A5-7FF318B7255D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>535</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>BF10B845-468E-4A88-A9D9-8E4C589E387C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>305</integer>
+			<key>ypos</key>
+			<integer>165</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
