@@ -36,6 +36,7 @@ cask "megasync"
 cask "obsidian"
 cask "keepassxc"
 cask "gimp"
+cask "hammerspoon"
 
 #
 ## Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
