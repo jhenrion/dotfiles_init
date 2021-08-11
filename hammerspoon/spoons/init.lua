@@ -1,8 +1,11 @@
 ------- SPOONS -------
 
+
 -- HAMMERSPOON FILE UPDATE->AUTO RELOAD
 local myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoon/", hs.reload):start()
 --path = hs.fs.pathToAbsolute(os.getenv("HOME") .. "/.hammerspoon/init.lua")
+
+hs.alert.show("Hammerspoon config reloaded...")
 
 -- WIFI
 
