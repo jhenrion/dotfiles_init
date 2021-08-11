@@ -7,13 +7,14 @@ PATH := $(DOTFILES_DIR)/bin:$(PATH)
 export XDG_CONFIG_HOME = $(HOME)/.config
 export STOW_DIR = $(DOTFILES_DIR)
 export ZSH = $(HOME)/.oh-my-zsh
+export HAMMERSPOON = $(HOME)/.dotfiles/hammerspoon
 #export ACCEPT_EULA=Y
 
 .PHONY: test
 
 all: $(OS)
 
-macos: sudo core-macos packages link cron 
+macos: sudo core-macos packages link cron hammerspoon
 
 #linux: core-linux link
 
@@ -109,9 +110,11 @@ zsh: git font
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH}/plugins/zsh-syntax-highlighting
 	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH}/plugins/zsh-autosuggestions
 
-
 font:
 	if [ -d fonts ]; then rm -rf fonts; fi
 	git clone https://github.com/powerline/fonts.git
 	cd fonts; ./install.sh; rm -rf fonts
+
+hammerspoon: cask-apps
+	. $(HAMMERSPOON)/linker.sh
 
