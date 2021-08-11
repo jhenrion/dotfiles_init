@@ -242,6 +242,14 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ## Don't show recently used applications in the Dock
 #defaults write com.Apple.Dock show-recents -bool false
 #
+
+################################################################################
+## Hammerspoon                                                                 #
+################################################################################
+
+defaults write org.hammerspoon.Hammerspoon MJShowDockIconKey 0
+defaults write org.hammerspoon.Hammerspoon MJShowMenuIconKey 0
+
 ################################################################################
 ## Mail                                                                        #
 ################################################################################
