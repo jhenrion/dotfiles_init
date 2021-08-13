@@ -7,6 +7,147 @@ local myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoo
 
 hs.alert.show("Hammerspoon config reloaded...")
 
+-- TEST
+
+-- Specify your combination (your hyperkey)
+local hyper = { "cmd", "alt", "ctrl" }
+-- We use 0 to reload the configuration
+hs.hotkey.bind(hyper, "a", function()
+   hs.reload()
+ end)
+-- Notify about the config reload
+--hs.notify.new({title="Hammerspoon", informativeText="Config loaded"}):send()
+
+-- WINDOWS
+function move_window(direction)
+  return function()
+        local win      = hs.window.focusedWindow()
+        local app      = win:application()
+        local app_name = app:name()
+        local f        = win:frame()
+        local screen   = win:screen()
+        local max      = screen:frame()
+
+        hs.alert.show(direction)
+
+        hs.window.animationDuration = 0.1
+
+        if direction == "fullscreen" then
+            win:maximize()
+        else
+          if direction == "left" then
+              -- +-----------------+
+              -- |        |        |
+              -- |  HERE  |        |
+              -- |        |        |
+              -- +-----------------+
+              f.x = max.x
+              f.y = max.y
+              f.w = max.w / 2
+              f.h = max.h
+          elseif direction == "right" then
+              -- +-----------------+
+              -- |        |        |
+              -- |        |  HERE  |
+              -- |        |        |
+              -- +-----------------+
+              f.x = max.x + (max.w / 2)
+              f.y = max.y
+              f.w = max.w / 2
+              f.h = max.h
+          elseif direction == "up" then
+              -- +-----------------+
+              -- |      HERE       |
+              -- +-----------------+
+              -- |                 |
+              -- +-----------------+
+              f.x = max.x
+              f.w = max.w
+              f.y = max.y
+              f.h = max.h / 2
+          elseif direction == "down" then
+              -- +-----------------+
+              -- |                 |
+              -- +-----------------+
+              -- |      HERE       |
+              -- +-----------------+
+              f.x = max.x
+              f.w = max.w
+              f.y = max.y + (max.h / 2)
+              f.h = max.h / 2
+          elseif direction == "upLeft" then
+              -- +-----------------+
+              -- |  HERE  |        |
+              -- +--------+        |
+              -- |                 |
+              -- +-----------------+
+              f.x = max.x
+              f.y = max.y
+              f.w = max.w/2
+              f.h = max.h/2
+          elseif direction == "upRight" then
+              -- +-----------------+
+              -- |        |  HERE  |
+              -- |        +--------|
+              -- |                 |
+              -- +-----------------+
+              f.x = max.x + (max.w / 2)
+              f.y = max.y
+              f.w = max.w/2
+              f.h = max.h/2
+          elseif direction == "downLeft" then
+              -- +-----------------+
+              -- |                 |
+              -- +--------+        |
+              -- |  HERE  |        |
+              -- +-----------------+
+              f.x = max.x
+              f.y = max.y + (max.h / 2)
+              f.w = max.w/2
+              f.h = max.h/2
+          elseif direction == "downRight" then
+              -- +-----------------+
+              -- |                 |
+              -- |        +--------|
+              -- |        |  HERE  |
+              -- +-----------------+
+              f.x = max.x + (max.w / 2)
+              f.y = max.y + (max.h / 2)
+              f.w = max.w/2
+              f.h = max.h/2
+          end
+          win:setFrame(f)
+        end
+end
+
+end
+
+hs.hotkey.bind(hyper, "p", move_window("left"))
+hs.hotkey.bind(hyper, "$", move_window("right"))
+hs.hotkey.bind(hyper, ")", move_window("up"))
+hs.hotkey.bind(hyper, "ù", move_window("down"))
+hs.hotkey.bind(hyper, "à", move_window("upLeft"))
+hs.hotkey.bind(hyper, "-", move_window("upRight"))
+hs.hotkey.bind(hyper, "m", move_window("downLeft"))
+hs.hotkey.bind(hyper, "`", move_window("downRight"))
+hs.hotkey.bind(hyper, "^", move_window("fullscreen"))
+
+--[[ hs.hotkey.bind(hyper, "return", function()
+ -- +--------------+
+ -- |              |
+ -- |     HERE     |
+ -- |              |
+ -- +---------------+
+   local win = hs.window.focusedWindow();
+   if not win then return end
+   win:moveToUnit(hs.layout.maximized)
+   end)
+-- this one for fullscreen mode
+ hs.hotkey.bind(hyper, "f", function()
+     local win = hs.window.frontmostWindow()
+     win:setFullscreen(not win:isFullscreen())
+ end) ]]
+
 -- WIFI
 
 wifiWatcher = nil
