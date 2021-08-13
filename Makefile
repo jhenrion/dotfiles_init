@@ -7,7 +7,7 @@ PATH := $(DOTFILES_DIR)/bin:$(PATH)
 export XDG_CONFIG_HOME = $(HOME)/.config
 export STOW_DIR = $(DOTFILES_DIR)
 export ZSH = $(HOME)/.oh-my-zsh
-export HAMMERSPOON = $(HOME)/.dotfiles/hammerspoon
+export HAMMERSPOON = $(DOTFILES_DIR)/hammerspoon
 #export ACCEPT_EULA=Y
 
 .PHONY: test
