@@ -162,6 +162,18 @@ hs.hotkey.bind(hyper, "return", move_window("fullscreen"))
      win:setFullscreen(not win:isFullscreen())
  end) ]]
 
+-- LOCK SCREEN AND SLEEP
+
+-- this one for lock the screen
+hs.hotkey.bind(hyper, "l", function()
+  hs.caffeinate.lockScreen()
+end)
+-- this one is for putting the system to sleep
+hs.hotkey.bind(hyper, "s", function()
+  hs.caffeinate.lockScreen()
+  hs.caffeinate.systemSleep()
+end)
+
 -- WIFI
 
 wifiWatcher = nil
