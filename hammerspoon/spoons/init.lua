@@ -7,12 +7,12 @@ local myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoo
 
 hs.alert.show("Hammerspoon config reloaded...")
 
--- TEST
+-- HYPERKEY
 
 -- Specify your combination (your hyperkey)
 local hyper = { "cmd", "alt", "ctrl" }
 -- We use 0 to reload the configuration
-hs.hotkey.bind(hyper, "a", function()
+hs.hotkey.bind(hyper, "o", function()
    hs.reload()
  end)
 -- Notify about the config reload
@@ -28,12 +28,17 @@ function move_window(direction)
         local screen   = win:screen()
         local max      = screen:frame()
 
-        hs.alert.show(direction)
-
         hs.window.animationDuration = 0.1
+
+        --hs.alert.show(direction)
 
         if direction == "fullscreen" then
             win:maximize()
+            --[[ print(win:isFullScreen())
+            print(f.x) --f.x = -3840
+            print(f.y) --f.y = -59
+            print(f.w) --f.w = 1920
+            print(f.h) --f.h = 1055 ]]
         else
           if direction == "left" then
               -- +-----------------+
@@ -123,14 +128,23 @@ end
 end
 
 hs.hotkey.bind(hyper, "p", move_window("left"))
+hs.hotkey.bind(hyper, "left", move_window("left"))
 hs.hotkey.bind(hyper, "$", move_window("right"))
+hs.hotkey.bind(hyper, "right", move_window("right"))
 hs.hotkey.bind(hyper, ")", move_window("up"))
+hs.hotkey.bind(hyper, "up", move_window("up"))
 hs.hotkey.bind(hyper, "ù", move_window("down"))
+hs.hotkey.bind(hyper, "down", move_window("down"))
 hs.hotkey.bind(hyper, "à", move_window("upLeft"))
+hs.hotkey.bind(hyper, "pageup", move_window("upLeft"))
 hs.hotkey.bind(hyper, "-", move_window("upRight"))
+hs.hotkey.bind(hyper, "end", move_window("upRight"))
 hs.hotkey.bind(hyper, "m", move_window("downLeft"))
+hs.hotkey.bind(hyper, "home", move_window("downLeft"))
 hs.hotkey.bind(hyper, "`", move_window("downRight"))
+hs.hotkey.bind(hyper, "pagedown", move_window("downRight"))
 hs.hotkey.bind(hyper, "^", move_window("fullscreen"))
+hs.hotkey.bind(hyper, "return", move_window("fullscreen"))
 
 --[[ hs.hotkey.bind(hyper, "return", function()
  -- +--------------+
