@@ -195,6 +195,7 @@ function ssidChangedCallback()
 		if newSSID == workSSID and lastSSID ~= workSSID then
 			-- TODO: Pause/quit music (itunes, spotify)
 			-- TODO: Pause/quit video (vlc)
+			open_app("ClearPassOnGuard")
 		elseif newSSID == workSSID and lastSSID == workSSID then
 			-- Test connection to work network, if ko launch pingone login page
 			hs.network.ping.ping("intralm2.fr.corp.leroymerlin.com",5,1,2,"any",pingWorkCallback)
@@ -204,6 +205,12 @@ function ssidChangedCallback()
     	if newSSID == homeSSID and lastSSID ~= homeSSID then
     	    -- We just joined our WiFi network
     	    hs.alert.show("We just joined our WiFi network" .. newSSID)
+
+          -- Kill work's apps
+          local appClearPassOnGuard = hs.application.find("ClearPassOnGuard")
+          if(appClearPassOnGuard ~= nil) then
+            appClearPassOnGuard:kill()
+          end
 
     	    -- hs.audiodevice.defaultOutputDevice():setVolume(25)
 
@@ -245,6 +252,14 @@ function pingWorkCallback(object, message)
 
 end
 
+function open_app(name)
+    return function()
+        hs.application.launchOrFocus(name)
+        if name == 'Finder' then
+            hs.appfinder.appFromName(name):activate()
+        end
+    end
+end
 
 ------- REMINDER / NOTES --------
 
