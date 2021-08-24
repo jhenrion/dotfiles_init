@@ -37,6 +37,7 @@ cask "obsidian"
 cask "keepassxc"
 cask "gimp"
 cask "hammerspoon"
+cask "xquartz"
 
 #
 ## Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
