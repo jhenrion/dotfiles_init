@@ -38,6 +38,7 @@ cask "keepassxc"
 cask "gimp"
 cask "hammerspoon"
 cask "xquartz"
+cask "touchswitcher"
 
 #
 ## Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
