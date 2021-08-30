@@ -7,6 +7,7 @@ local myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoo
 
 hs.alert.show("Hammerspoon config reloaded...")
 
+
 -- HYPERKEY
 
 -- Specify your combination (your hyperkey)
@@ -195,10 +196,16 @@ function ssidChangedCallback()
 		if newSSID == workSSID and lastSSID ~= workSSID then
 			-- TODO: Pause/quit music (itunes, spotify)
 			-- TODO: Pause/quit video (vlc)
-			open_app("ClearPassOnGuard")
+			hs.timer.doAfter(3, open_app("ClearPassOnGuard"))
+			update_slack_status("Bureau")
 		elseif newSSID == workSSID and lastSSID == workSSID then
 			-- Test connection to work network, if ko launch pingone login page
-			hs.network.ping.ping("intralm2.fr.corp.leroymerlin.com",5,1,2,"any",pingWorkCallback)
+--[[ -- Ne fonctionne pas
+			hs.timer.doAfter(5, function()
+			  hs.network.ping.ping("intralm2.fr.corp.leroymerlin.com",5,1,2,"any",pingWorkCallback)
+			  end)
+ ]]
+
 		end
 
 
@@ -216,7 +223,7 @@ function ssidChangedCallback()
 
     	elseif newSSID ~= homeSSID and lastSSID == homeSSID then
     	    -- We just departed our home WiFi network
-			hs.alert.show("We just departed our home WiFi network" .. newSSID)
+			    hs.alert.show("We just departed our home WiFi network" .. newSSID)
 
     	    -- hs.audiodevice.defaultOutputDevice():setVolume(0)
     	end
@@ -240,9 +247,9 @@ function pingWorkCallback(object, message)
 		hs.urlevent.openURL("https://desktop.pingone.com/adeo")
 	end
 
-	if newStatus == "success" then
+	--[[ if newStatus == "success" then
 		hs.alert.show("Connected to Work network")
-	end
+	end ]]
 
 	--if not (newStatus == previousStatus)
 	--then
@@ -259,6 +266,50 @@ function open_app(name)
             hs.appfinder.appFromName(name):activate()
         end
     end
+end
+
+function update_slack_status(newStatus)
+
+token = "xoxp-161229441520-602176636677-2448258325169-4afb22bcd4f5f1c6c27fcce63822514b"
+status_text_canonical = ""
+status_text = ""
+status_emoji = ""
+
+update = false
+
+if newStatus == 'Télétravail' then
+  status_text_canonical = "Working remotely"
+  status_text = "Télétravail"
+  status_emoji = ":house_with_garden:"
+  update = true
+elseif newStatus == 'Bureau' then
+  status_text_canonical = ""
+  status_text = "Au bureau"
+  status_emoji = ":office:"
+  update = true
+end
+
+-- Call Slack API
+if update then
+  hs.http.asyncPost("https://slack.com/api/users.profile.set",
+    hs.json.encode(
+        {
+          ['profile'] = {
+            ['status_text_canonical'] = status_text_canonical,
+            ['status_text'] = status_text,
+            ['status_emoji'] = status_emoji,
+            }
+        }
+      ),
+      {
+        ["Content-Type"] = "application/json; charset=UTF-8",
+        ["Authorization"] = "Bearer " .. token
+      },
+    function(http_number, body, headers)
+        print(http_number)
+        print(body)
+      end)
+  end
 end
 
 ------- REMINDER / NOTES --------
