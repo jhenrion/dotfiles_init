@@ -7,6 +7,7 @@ local myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoo
 
 hs.alert.show("Hammerspoon config reloaded...")
 
+hs.timer.usleep(2000)
 
 -- HYPERKEY
 
@@ -197,7 +198,8 @@ function ssidChangedCallback()
 			-- TODO: Pause/quit music (itunes, spotify)
 			-- TODO: Pause/quit video (vlc)
 			hs.timer.doAfter(3, open_app("ClearPassOnGuard"))
-			update_slack_status("Bureau")
+			hs.timer.doAfter(10, update_slack_status("Bureau"))
+
 		elseif newSSID == workSSID and lastSSID == workSSID then
 			-- Test connection to work network, if ko launch pingone login page
 --[[ -- Ne fonctionne pas
@@ -206,6 +208,7 @@ function ssidChangedCallback()
 			  end)
  ]]
 
+      hs.timer.doAfter(10, update_slack_status("Bureau"))
 		end
 
 
@@ -269,47 +272,50 @@ function open_app(name)
 end
 
 function update_slack_status(newStatus)
+  return function()
+    hs.alert.show("Slack status updating... " .. newStatus)
 
-token = "xoxp-161229441520-602176636677-2448258325169-4afb22bcd4f5f1c6c27fcce63822514b"
-status_text_canonical = ""
-status_text = ""
-status_emoji = ""
+    token = "xoxp-161229441520-602176636677-2431822490182-4c231e3ed1e578831c1472eee9544ab2"
+    status_text_canonical = ""
+    status_text = ""
+    status_emoji = ""
 
-update = false
+    update = false
 
-if newStatus == 'Télétravail' then
-  status_text_canonical = "Working remotely"
-  status_text = "Télétravail"
-  status_emoji = ":house_with_garden:"
-  update = true
-elseif newStatus == 'Bureau' then
-  status_text_canonical = ""
-  status_text = "Au bureau"
-  status_emoji = ":office:"
-  update = true
-end
+    if newStatus == 'Télétravail' then
+      status_text_canonical = "Working remotely"
+      status_text = "Télétravail"
+      status_emoji = ":house_with_garden:"
+      update = true
+    elseif newStatus == 'Bureau' then
+      status_text_canonical = ""
+      status_text = "Au bureau"
+      status_emoji = ":office:"
+      update = true
+    end
 
--- Call Slack API
-if update then
-  hs.http.asyncPost("https://slack.com/api/users.profile.set",
-    hs.json.encode(
-        {
-          ['profile'] = {
-            ['status_text_canonical'] = status_text_canonical,
-            ['status_text'] = status_text,
-            ['status_emoji'] = status_emoji,
+    -- Call Slack API
+    if update == true then
+      hs.http.asyncPost("https://slack.com/api/users.profile.set",
+        hs.json.encode(
+            {
+              ['profile'] = {
+                ['status_text_canonical'] = status_text_canonical,
+                ['status_text'] = status_text,
+                ['status_emoji'] = status_emoji,
+                }
             }
-        }
-      ),
-      {
-        ["Content-Type"] = "application/json; charset=UTF-8",
-        ["Authorization"] = "Bearer " .. token
-      },
-    function(http_number, body, headers)
-        print(http_number)
-        print(body)
-      end)
-  end
+          ),
+          {
+            ["Content-Type"] = "application/json; charset=UTF-8",
+            ["Authorization"] = "Bearer " .. token
+          },
+        function(http_number, body, headers)
+            print(http_number)
+            print(body)
+          end)
+      end
+    end
 end
 
 ------- REMINDER / NOTES --------
