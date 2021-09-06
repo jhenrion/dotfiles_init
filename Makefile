@@ -14,7 +14,7 @@ export HAMMERSPOON = $(DOTFILES_DIR)/hammerspoon
 
 all: $(OS)
 
-macos: sudo core-macos packages link cron hammerspoon freerdp chrome
+macos: sudo core-macos packages link cron hammerspoon chrome
 
 #linux: core-linux link
 
@@ -76,9 +76,6 @@ brew:
 
 git: brew
 	brew install git git-extras
-
-freerdp: brew
-	brew install freerdp
 
 #npm:
 #	if ! [ -d $(NVM_DIR)/.git ]; then git clone https://github.com/creationix/nvm.git $(NVM_DIR); fi
