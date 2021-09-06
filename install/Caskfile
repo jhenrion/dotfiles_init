@@ -21,6 +21,7 @@
 #cask "visual-studio-code"
 
 cask "google-chrome"
+cask "google-chrome-canary"
 cask "docker"
 cask "slack"
 cask "spotify"
