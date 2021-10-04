@@ -1,5 +1,8 @@
 ------- SPOONS -------
 
+--local test = hs.json.read("~/.hammerspoon/config.json")
+
+--print(test)
 
 -- HAMMERSPOON FILE UPDATE->AUTO RELOAD
 local myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoon/", hs.reload):start()
@@ -176,6 +179,19 @@ hs.hotkey.bind(hyper, "s", function()
   hs.caffeinate.systemSleep()
 end)
 
+-- APPLICATION WATCHER
+
+function applicationWatcher(appName, eventType, appObject)
+  if (eventType == hs.application.watcher.launched) then
+    --hs.alert.show(appName)
+    if (appName == "Hearthstone") then
+      hs.application.launchOrFocus("HSTracker")
+    end
+  end
+end
+appWatcher = hs.application.watcher.new(applicationWatcher)
+appWatcher:start()
+
 -- WIFI
 
 wifiWatcher = nil
@@ -275,7 +291,7 @@ function update_slack_status(newStatus)
   return function()
     hs.alert.show("Slack status updating... " .. newStatus)
 
-    token = "xoxp-161229441520-602176636677-2431822490182-4c231e3ed1e578831c1472eee9544ab2"
+    token = ""
     status_text_canonical = ""
     status_text = ""
     status_emoji = ""
