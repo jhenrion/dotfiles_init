@@ -40,6 +40,7 @@ cask "gimp"
 cask "hammerspoon"
 cask "xquartz"
 cask "touchswitcher"
+cask "oracle-jdk"
 
 #
 ## Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
