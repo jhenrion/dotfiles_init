@@ -14,7 +14,7 @@ export HAMMERSPOON = $(DOTFILES_DIR)/hammerspoon
 
 all: $(OS)
 
-macos: sudo core-macos packages link cron hammerspoon chrome
+macos: sudo core-macos packages link cron hammerspoon
 
 #linux: core-linux link
 
