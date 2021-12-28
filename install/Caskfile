@@ -41,6 +41,7 @@ cask "hammerspoon"
 cask "xquartz"
 cask "touchswitcher"
 cask "oracle-jdk"
+cask "fsmonitor"
 
 #
 ## Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
