@@ -42,6 +42,8 @@ cask "xquartz"
 cask "touchswitcher"
 cask "oracle-jdk"
 cask "fsmonitor"
+#https://piratefache.ch/mount-raspberry-pi-sd-card-on-mac-os/
+cask "osxfuse"
 
 #
 ## Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
