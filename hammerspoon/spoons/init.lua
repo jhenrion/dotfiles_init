@@ -179,6 +179,16 @@ hs.hotkey.bind(hyper, "s", function()
   hs.caffeinate.systemSleep()
 end)
 
+-- SYSTEM WATCHER
+function systemWatcher(eventType)
+  if eventType == hs.caffeinate.watcher.screensDidLock then
+    hs.audiodevice.defaultOutputDevice():setMuted(true)
+  end
+end
+
+sysWatcher = hs.caffeinate.watcher.new(systemWatcher)
+sysWatcher:start()
+
 -- APPLICATION WATCHER
 
 function applicationWatcher(appName, eventType, appObject)
@@ -214,7 +224,7 @@ function ssidChangedCallback()
 			-- TODO: Pause/quit music (itunes, spotify)
 			-- TODO: Pause/quit video (vlc)
 			hs.timer.doAfter(3, open_app("ClearPassOnGuard"))
-			hs.timer.doAfter(10, update_slack_status("Bureau"))
+			hs.timer.doAfter(120, update_slack_status("Bureau"))
 
 		elseif newSSID == workSSID and lastSSID == workSSID then
 			-- Test connection to work network, if ko launch pingone login page
