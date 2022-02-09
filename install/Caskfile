@@ -43,7 +43,15 @@ cask "touchswitcher"
 cask "oracle-jdk"
 cask "fsmonitor"
 #https://piratefache.ch/mount-raspberry-pi-sd-card-on-mac-os/
-cask "osxfuse"
+cask "macfuse"
+cask "lulu"
+cask "cyberduck"
+cask "dbeaver-community"
+cask "meld" # to diff files like winmerge
+
+# Dev tools
+# cask "0xed"
+cask "otx"
 
 #
 ## Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
