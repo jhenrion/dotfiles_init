@@ -14,7 +14,7 @@ export HAMMERSPOON = $(DOTFILES_DIR)/hammerspoon
 
 all: $(OS)
 
-macos: sudo core-macos packages link cron hammerspoon
+macos: sudo core-macos packages link cron hammerspoon dev-tools
 
 #linux: core-linux link
 
@@ -118,4 +118,6 @@ font:
 hammerspoon: cask-apps
 	. $(HAMMERSPOON)/linker.sh
 
-
+dev-tools:
+	wget -qO- http://stevenygard.com/download/class-dump-3.5.tar.gz  | tar xvz - -C /usr/local/class-dump --strip-component=1
+	ln -sf /usr/local/class-dump/class-dump /usr/local/bin/class-dump
