@@ -51,7 +51,7 @@ cask "meld" # to diff files like winmerge
 
 # Dev tools
 # cask "0xed"
-cask "otx"
+# cask "otx"
 
 #
 ## Quick Look Plugins (https://github.com/sindresorhus/quick-look-plugins)
