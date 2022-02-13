@@ -1,4 +1,4 @@
 
 # Omnifocus cron
 0 9 * * * /usr/bin/osascript /Users/ju/.dotfiles/applescript/omnifocus_planning.applescript
-0 8-21 * * * /usr/bin/osascript /Users/ju/.dotfiles/applescript/omnifocus_send_to_google_calendar.applescript
+0 8-21 * * 1-5 /usr/bin/osascript /Users/ju/.dotfiles/applescript/omnifocus_send_to_google_calendar.applescript
